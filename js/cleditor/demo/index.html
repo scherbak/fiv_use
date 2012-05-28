@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../cleditor-1.3.0/jquery.cleditor.js"></script>
+
+    <script src="../cleditor-1.3.0/plugins/replacer-1.0/jquery.cleditor.replacer-1.0.js"></script>
+    <script src="../cleditor-1.3.0/plugins/mystyles-1.0/jquery.cleditor.mystyles-1.0.js"></script>
+    <link rel="stylesheet" href="../cleditor-1.3.0/jquery.cleditor.css" />
+    <style type="text/css">
+      #test{display: none}
+    </style>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("textarea").cleditor();
+        $('#show').click(function(){
+          $("#test").fadeIn();
+        });
+        
+      });
+    </script>
+    <link 
+  </head>
+  <body>
+    <a href="#show" id="show">show</a>
+    <div id="test">
+      <textarea name="text" id="" cols="30" rows="10"><p>test text</p></textarea>
+    </div>
+  </body>
+</html>

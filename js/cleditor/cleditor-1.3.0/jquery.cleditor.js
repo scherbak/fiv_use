@@ -23,7 +23,7 @@
     // Define the defaults used for all new cleditor instances
     defaultOptions: {
       width:        400, // width not including margins, borders or padding
-      height:       350, // height not including margins, borders or padding
+      height:       200, // height of textarea
       controls:     // controls to add to the toolbar
                     "bold italic underline strikethrough subscript superscript | font size " +
                     "style | color highlight removeformat | bullets numbering | outdent " +
@@ -211,8 +211,7 @@
     // Create the main container and append the textarea
     var $main = editor.$main = $(DIV_TAG)
       .addClass(MAIN_CLASS)
-      .width(options.width)
-      .height(options.height);
+      .width(options.width);
 
     // Create the toolbar
     var $toolbar = editor.$toolbar = $(DIV_TAG)
@@ -887,22 +886,20 @@
     // Wait for the layout to finish - shortcut for $(document).ready()
     $(function() {
 
-      var $toolbar = editor.$toolbar,
-          $group = $toolbar.children("div:last"),
-          wid = $main.width();
-      
-      // Resize the toolbar
-//      var hgt = $group.offset().top + $group.outerHeight() - $toolbar.offset().top + 1;
-//      $toolbar.height(hgt);
+      var wid = $main.width();
       
       // Resize the iframe
-      hgt = (/%/.test("" + options.height) ? $main.height() : parseInt(options.height)) - hgt;
-      $frame.width(wid).height(hgt);
-
-      // Resize the textarea. IE6 textareas have a 1px top
-      // & bottom margin that cannot be removed using css.
-      editor.$area.width(wid).height(ie6 ? hgt - 2 : hgt);
-
+      if(/%/.test(options.height)==false){
+        var hgt = options.height;
+        $frame.width(wid).height(hgt);
+      
+        // Resize the textarea. IE6 textareas have a 1px top
+        // & bottom margin that cannot be removed using css.
+        editor.$area.height(ie6 ? hgt - 2 : hgt);
+      }
+      
+      editor.$area.width(wid);
+      
       // Switch the iframe into design mode if enabled
       disable(editor, editor.disabled);
 
